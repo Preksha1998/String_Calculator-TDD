@@ -9,5 +9,8 @@ public class StringCalculatorTest {
     public void emptyString()throws Exception{
         assertEquals(0,sc.Add(" "));
     }
-
+    @Test
+    public void oneArgString()throws Exception{
+        assertEquals(1,sc.Add("  1"));
+    }
 }
