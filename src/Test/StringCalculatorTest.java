@@ -25,4 +25,9 @@ public class StringCalculatorTest {
     public void handleNewLine()throws Exception{
         assertEquals(6,sc.Add("1\n2,3"));
     }
+    @Test
+    public void WithDifferentDelimiters()throws Exception{
+        assertEquals(3,sc.Add("//;\n1;2"));
+        assertEquals(3,sc.Add("//*\n1*2"));
+    }
 }
