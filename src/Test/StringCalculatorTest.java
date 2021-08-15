@@ -17,4 +17,8 @@ public class StringCalculatorTest {
     public void twoArgString()throws Exception{
         assertEquals(100,sc.Add("  50,50"));
     }
+    @Test
+    public void multipleArgString()throws Exception{
+        assertEquals(150,sc.Add("10,100,40"));
+    }
 }
