@@ -13,4 +13,8 @@ public class StringCalculatorTest {
     public void oneArgString()throws Exception{
         assertEquals(1,sc.Add("  1"));
     }
+    @Test
+    public void twoArgString()throws Exception{
+        assertEquals(100,sc.Add("  50,50"));
+    }
 }
