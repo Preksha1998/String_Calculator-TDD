@@ -30,4 +30,14 @@ public class StringCalculatorTest {
         assertEquals(3,sc.Add("//;\n1;2"));
         assertEquals(3,sc.Add("//*\n1*2"));
     }
+    @Test
+    public void negativeNumbers(){
+        try{
+            sc.Add("-1,-2");
+            sc.Add("//\n-1,-2,5");
+        }
+        catch (Exception e){
+            assertEquals("Negative Numbers not Allowed -1,-2",e.getMessage());
+        }
+    }
 }
