@@ -21,4 +21,8 @@ public class StringCalculatorTest {
     public void multipleArgString()throws Exception{
         assertEquals(150,sc.Add("10,100,40"));
     }
+    @Test
+    public void handleNewLine()throws Exception{
+        assertEquals(6,sc.Add("1\n2,3"));
+    }
 }
