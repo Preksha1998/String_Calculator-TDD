@@ -11,11 +11,17 @@ public class StringCalculator {
         }
         else if(numbers.startsWith("//")){
             int sum = 0;
-            String delimiter;
-            int delimiterIndex = numbers.indexOf("//") + 2;
-            delimiter = numbers.substring(delimiterIndex, delimiterIndex + 1);
-            numbers = numbers.substring(4);
-            String[] arrNum = numbers.split(Pattern.quote(delimiter));
+            String delimiter1 = "", delimiterstr = "";
+            int start_index = numbers.indexOf("//") + 2;
+            int end_index = numbers.indexOf("\n");
+            delimiter1 = numbers.substring(start_index,end_index);
+            delimiterstr = numbers.substring(end_index + 1);
+
+            if(delimiter1.startsWith("[") && delimiter1.endsWith("]")){
+                delimiter1 = numbers.substring(start_index + 1,end_index - 1);
+            }
+
+            String[] arrNum = delimiterstr.split(Pattern.quote(delimiter1));
             for(String num:arrNum){
                 sum+= Integer.parseInt(num);
             }

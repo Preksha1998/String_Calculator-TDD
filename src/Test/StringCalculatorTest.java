@@ -45,4 +45,9 @@ public class StringCalculatorTest {
         assertEquals(2,sc.Add("10001,2"));
         assertEquals(5,sc.Add("10001,2,3"));
     }
+    @Test
+    public void multipleDelimiterswithAnyLength()throws Exception{
+        assertEquals(6,sc.Add("//[***]\n1***2***3"));
+        assertEquals(6,sc.Add("//[&&&]\n1&&&2&&&3"));
+    }
 }
