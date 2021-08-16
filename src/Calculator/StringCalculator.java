@@ -23,12 +23,18 @@ public class StringCalculator {
         }
         else{
             String Arrnum[] = numbers.split(",|\n");
-            int number = 0;
+            int sum = 0, number = 0;
             String negStr = "";
             for(String num : Arrnum) {
                 number += Integer.parseInt(num);
                 if(number < 0){
                     negStr = negStr.concat(num+",");
+                }
+                else if (number < 1000) {
+                    sum += number;
+                } else {
+                    number = 0;
+                    sum += number;
                 }
             }
             if(!negStr.isEmpty()){
