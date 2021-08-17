@@ -1,14 +1,16 @@
 package Calculator;
-
 import java.util.regex.Pattern;
 
 public class StringCalculator {
     public int Add(String numbers) throws Exception {
+        String[] Arrnum;
+        int result;
         numbers = numbers.replaceAll(" ","");
         //for empty String
         if(numbers.equals("")) {
             return 0;
         }
+        // support multiple delimiters
         else if(numbers.startsWith("//")){
             int sum = 0;
             String delimiter1 = "", delimiterstr = "";
@@ -21,33 +23,38 @@ public class StringCalculator {
                 delimiter1 = numbers.substring(start_index + 1,end_index - 1);
             }
 
-            String[] arrNum = delimiterstr.split(Pattern.quote(delimiter1));
-            for(String num:arrNum){
-                sum+= Integer.parseInt(num);
-            }
-            return sum;
+            Arrnum = delimiterstr.split(Pattern.quote(delimiter1));
+            result = Sum(Arrnum);
+            return result;
         }
+//        //supports unknown amount of numbers
         else{
-            String Arrnum[] = numbers.split(",|\n");
-            int sum = 0, number = 0;
-            String negStr = "";
-            for(String num : Arrnum) {
-                number += Integer.parseInt(num);
-                if(number < 0){
-                    negStr = negStr.concat(num+",");
-                }
-                else if (number < 1000) {
-                    sum += number;
-                } else {
-                    number = 0;
-                    sum += number;
-                }
-            }
-            if(!negStr.isEmpty()){
-                negStr = negStr.substring(0,negStr.length()-1);
-                throw new Exception("Negative Numbers not Allowed " + negStr);
-            }
-            return number;
+            Arrnum = numbers.split(",|\n");
+            result = Sum(Arrnum);
+            return result;
         }
+    }
+    //convert string to an integer
+    private static int convertToInt(String no){
+             int num = Integer.parseInt(no);
+             return  num;
+    }
+    //Add numbers less than 1000 and negative numbers will throw exception
+    private  static  int Sum(String[] numbers) throws Exception{
+        int sum = 0;
+        String negStr = "";
+        for (String num : numbers) {
+            if (convertToInt(num) < 0) {
+                negStr = negStr.concat(convertToInt(num) + ",");
+            }
+            if (convertToInt(num) < 1000) {
+                sum += convertToInt(num);
+            }
+        }
+        if (!negStr.isEmpty()) {
+            negStr = negStr.substring(0, negStr.length() - 1);
+            throw new Exception("Negative Numbers not Allowed " + negStr);
+        }
+        return sum;
     }
 }
